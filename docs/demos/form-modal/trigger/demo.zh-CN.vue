@@ -9,7 +9,7 @@
       <StringForm></StringForm>
     </div>
     <div>
-      <p>对象</p>
+      <p>对象形式：<Button @click="show = !show">动态显示/隐藏</Button></p>
       <ObjectForm></ObjectForm>
     </div>
     <div>
@@ -21,6 +21,9 @@
 
 <script lang="tsx" setup>
 import { useFormModal } from 'arconify';
+import { ref } from 'vue';
+
+const show = ref(true);
 
 const BoolForm = useFormModal({
   trigger: true,
@@ -50,6 +53,7 @@ const StringForm = useFormModal({
 const ObjectForm = useFormModal({
   trigger: {
     text: '我是对象形式',
+    visible: () => show.value,
     buttonProps: {
       status: 'danger'
     }

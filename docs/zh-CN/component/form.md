@@ -18,49 +18,49 @@
 
 ## 字段语法
 
-item 中的 field 字段支持特殊语法，以应对日期控件多个值等情况，目前支持数组结构语法和对象结构语法，submit 中拿到的值就是解析后的值。
+item 中的 field 属性支持特殊语法，以应对日期控件多个值等情况，目前支持数组结构语法和对象结构语法，submit 中拿到的值就是解析后的值。
 
 :::demo form/field
 :::
 
 ## 表单项
 
-通过 items 属性定义表单项，每个表单项等价于 Arco Design 中的 FormItem。除 label/field 等部分参数外，其余表单项参数均可通过 itemProps 和 itemSlots 透传。
+通过 items 属性定义表单项，通过 itemProps 和 itemSlots 属性给原组件传递参数。除 label 和 field 等特殊参数外，其余表单项参数均可透传。
 
 :::demo form/item
 :::
 
 ## 表单控件
 
-通过 item 的 setter/setterProps/setterSlots 属性定义输入控件，setterProps 和 setterSlots 会随着 setter 的不同提供对应的类型提示，使用 Vs Code 可获得智能提示。
+通过 item 的 setter、setterProps 和 setterSlots 属性定义输入控件，setterProps 和 setterSlots 会随着 setter 的不同提供对应的类型提示，使用 Vs Code 可获得类型提示。
 
 :::demo form/setter
 :::
 
 ## 表单规则
 
-通过 item 的 required/rules 属性定义，其中 rules 做了便捷处理，可传入字符串或对象，字符串表示使用预定义规则，对象表示自定义规则：
+通过 item 的 required 和 rules 属性定义，其中 rules 做了特殊处理，可传入字符串或对象，字符串表示预定义规则，对象表示自定义规则：
 
 :::demo form/rule
 :::
 
 ## 参数透传
 
-通过 formProps 可向原 Form 组件传递参数，除 model 等部分参数外均可透传。备注：原 Form 组件没有插槽。
+通过 formProps 可向原组件传递参数，除 model 等部分参数外均可透传。提示：原 Form 组件没有插槽。
 
 :::demo form/form
 :::
 
 ## 提交表单
 
-通过 submit 定义提交处理，若不设置该参数将不显示提交按钮，以下是不设置该参数的实例：
+通过 submit 定义提交处理，可以是处理函数或对象，对象表示表单项(同 items)，可使用 itemSlots.defualt 自定义渲染。若不设置该参数将不显示提交按钮，以下是不设置该参数的实例：
 
 :::demo form/dashed
 :::
 
-## 表单引用
+## 运行时
 
-useForm 返回一个对象，对象内包含一个 formRef 引用，表单挂载后可以使用：
+如需访问运行时的能力，可使用 useForm 返回对象的 formRef 属性，在表单挂载后可以使用：
 
 :::demo form/ref
 :::
@@ -70,6 +70,7 @@ useForm 返回一个对象，对象内包含一个 formRef 引用，表单挂载
 ```ts
 useTable(options: UseFormOptions | ((formRef: AnFormInstance) => UseFormOptions)): FormReturn
 
+// 返回值类型
 interface FormReturn {
   // 组件名字
   name: string,

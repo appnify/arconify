@@ -1,14 +1,14 @@
 # 介绍
 
-一个基于 Arco Design 的 Vue 组件库，简化表单/表格增删改查的日常开发。
+一个基于 Arco Design 的 Vue 组件库，简化表单/表格增删改查开发。
 
 ## 特性
 
+- ✨ 极简API，仅需 useForm、useFormModal 和 useTable 即可。
 - 📦 高质量的开箱即用 Vue 3 组件
-- 📐 遵循直觉、简约的 Api 设计
 - 🔧 自由配置的属性默认值，快速完成全局/局部修改
 - ⚡ 组合式 Api，良好的性能基础
-- 🔨 TypeScript 编写，完整的类型
+- 🔨 TypeScript 编写，提供完善的类型提示和文档注释
 - 👀 贴近业务代码编排，低源码阅读门槛
 
 ## 要求
@@ -40,4 +40,4 @@ yarn add arconify -D
 
 ## 贡献
 
-欢迎你的加入！你可以查阅 [贡献指南](https://github.com/vexip-ui/vexip-ui/blob/main/CONTRIBUTING.md) 了解如何开始。
+欢迎你的加入！你可以查阅 [贡献指南](https://github.com/juetan/arconify) 了解如何开始。

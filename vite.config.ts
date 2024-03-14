@@ -12,8 +12,11 @@ export default defineConfig({
     }),
   ],
   build: {
+    lib: {
+      entry: './src/main.ts',
+    },
     rollupOptions: {
-      external: ['vue', '@arco-design/web-vue', 'lodash-es', '@vueuse/core'],
+      external: ['vue', '@arco-design/web-vue', 'lodash-es'],
       output: [
         {
           format: 'es',
@@ -21,12 +24,8 @@ export default defineConfig({
           entryFileNames: '[name].js',
           preserveModules: true,
           preserveModulesRoot: 'src',
-          
         },
       ],
-    },
-    lib: {
-      entry: './src/main.ts',
     },
   },
 })

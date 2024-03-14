@@ -1,6 +1,6 @@
 # Table 表格
 
-以 hook 形式构建一个表格，依赖于 useForm 和 useFormModal，内置常用的快捷功能。
+以 hook 形式构建一个表格，依赖于 useForm 和 useFormModal，提供数据增删改查的一键式配置。
 
 ## 基础表格
 
@@ -32,7 +32,7 @@
 
 ## 查询操作
 
-通过 search 属性定义查询表单，可以是 useForm 参数或 useForm 中的 items 数组。
+通过 search 属性定义查询表单，可以是 useForm 参数或 useForm 中的 items 数组。其中 `type: "search"` 默认回车或点击查询按钮触发查询，如不需要可在 setterProps 中覆盖 onPressEnter 和 onSearch 属性。
 
 :::demo table/search
 :::
@@ -53,7 +53,7 @@
 
 ## 删除操作
 
-通过 columns 的 `type: delete` 定义删除操作。
+通过 columns 的 `type: delete` 定义删除操作。与普通操作不同的是，该操作执行之前会弹窗确认，执行成功后会刷新表格。
 
 :::demo table/delete
 :::
@@ -74,14 +74,14 @@
 
 ## 参数透传
 
-通过 tableProps 和 tableSlots 可以传递参数给表格组件。
+通过 tableProps 和 tableSlots 属性可以传递参数给原表格组件。
 
 :::demo table/table
 :::
 
 ## 运行时
 
-如果需要用到运行时，可以给 useTable 传入函数，函数参数为 tableRef 实例，在挂载后可使用。以增加一个刷新按钮为例。
+如果需要用到运行时，可以给 useTable 传入函数，该函数的参数为 tableRef 实例，在组件挂载后可使用。以增加一个刷新按钮为例。
 
 :::demo table/ref
 :::

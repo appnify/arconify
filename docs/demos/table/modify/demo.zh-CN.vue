@@ -41,6 +41,16 @@ const UserTable = useTable({
       title: '操作',
       type: 'button',
       buttons: [
+        // 当定义 modify 属性时会默认添加，这里手动添加，允许你做自定义修改。
+        // onClick 返回值将作为表单的 model。
+        {
+          text: '修改',
+          type: 'modify',
+          onClick(props) {
+            const data = { ...props.record, name: 'todo' };
+            return data;
+          },
+        },
         {
           text: '测试',
           onClick() {
@@ -52,7 +62,7 @@ const UserTable = useTable({
   ],
   search: [
     {
-      title: '用户名字',
+      label: '用户名字',
       field: 'name',
       setter: 'search',
     },
