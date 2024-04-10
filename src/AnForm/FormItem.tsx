@@ -38,42 +38,34 @@ export const AnFormItem = defineComponent({
     const disabled = computed(() => Boolean(props.item.disable?.(props)))
 
     const setterSlots = (() => {
-      const slots = props.item.setterSlots
-      const items: Recordable = {}
-      if (!slots) {
-        return null
+      const slots: Recordable = {}
+      for (const [name, Render] of Object.entries(props.item.setterSlots ?? {})) {
+        slots[name] = (p: Recordable) => {
+          return <Render {...p} {...props} />
+        }
       }
-      for (const [name, Slot] of Object.entries(slots)) {
-        // @ts-ignore
-        items[name] = (p: Recordable) => <Slot {...p} {...props} />
-      }
-      return items
+      return slots
     })()
 
     const itemSlots = (() => {
-      const Setter = setterMap[props.item.setter as SetterType]?.setter as any
-      const slots = props.item.itemSlots
-      const items: Recordable = {}
-      if (!slots && !Setter) {
-        return null
-      }
-      const SetterRender = () => (
-        <Setter {...props.item.setterProps} v-model={props.model[props.item.field]}>
-          {setterSlots}
-        </Setter>
-      )
-      if (!slots) {
-        return {
-          default: SetterRender,
+      const slots: Recordable = {}
+
+      for (const [name, Render] of Object.entries(props.item.itemSlots ?? {})) {
+        slots[name] = (p: Recordable) => {
+          return <Render {...p} {...props}></Render>
         }
       }
-      for (const [name, Slot] of Object.entries(slots)) {
-        items[name] = (p: Recordable) => <Slot {...p} {...props}></Slot>
+
+      const Setter = setterMap[props.item.setter as SetterType]?.setter as any
+      if (Setter && !slots.default) {
+        slots.default = () => (
+          <Setter {...props.item.setterProps} v-model={props.model[props.item.field]}>
+            {{ ...setterSlots }}
+          </Setter>
+        )
       }
-      if (Setter) {
-        items.default = SetterRender
-      }
-      return items
+
+      return slots
     })()
 
     provide(FormItemContextKey, props)
@@ -84,7 +76,7 @@ export const AnFormItem = defineComponent({
       }
       return (
         <FormItem {...props.item.itemProps} class="an-form-item" label={props.item.label} rules={rules.value} disabled={disabled.value} field={props.item.field}>
-          {itemSlots}
+          {{ ...itemSlots }}
         </FormItem>
       )
     }

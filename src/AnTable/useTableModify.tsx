@@ -1,41 +1,15 @@
 import { cloneDeep, defaults, merge } from 'lodash-es'
-import { Ref } from 'vue'
-import { AnFormModalProps } from '../AnForm/FormModal'
-import { FormItem } from '../AnForm/useFormItems'
-import { UseFormModalOptions, useFormModalProps } from '../AnForm/useFormModal'
-import { Recordable } from '../AnForm/util'
-import { AnTableInstance } from './Table'
-import { ExtendFormItem } from './useSearchForm'
-import { UseTableOptions } from './useTable'
+import { FormItem, UseFormModalOptions, useFormModalProps } from '../AnForm'
+import { defineOptionsHandler } from './util'
 
-export type ModifyForm = Omit<UseFormModalOptions, 'items' | 'trigger'> & {
-  /**
-   * 是否继承新建弹窗
-   * @default
-   * ```ts
-   * false
-   * ```
-   */
-  extend?: boolean
-  /**
-   * 表单项
-   * ```tsx
-   * [{
-   *   extend: 'name', // 从 create.items 中继承
-   * }]
-   * ```
-   */
-  items?: ExtendFormItem[]
-}
-
-export function useModifyForm(options: UseTableOptions, createModel: Recordable, tableRef: Ref<AnTableInstance | null>): AnFormModalProps | undefined {
-  const { create, modify, columns } = options
-
-  if (!modify) {
-    return undefined
+export const useTableModify = defineOptionsHandler((options, props, tableRef) => {
+  if (!options.modify) {
+    return
   }
 
-  for (const column of columns ?? []) {
+  const { create, modify } = options
+
+  for (const column of options.columns ?? []) {
     if (column.type === 'button') {
       const btn = column.buttons.find(i => i.type === 'modify')
       if (!btn) {
@@ -58,7 +32,7 @@ export function useModifyForm(options: UseTableOptions, createModel: Recordable,
     }
   }
 
-  let result: UseFormModalOptions = { items: [], model: cloneDeep(createModel) }
+  let result: UseFormModalOptions = { items: [], model: cloneDeep(props.create!.model) }
   if (modify.extend && create) {
     result = merge({}, create)
   }
@@ -81,5 +55,5 @@ export function useModifyForm(options: UseTableOptions, createModel: Recordable,
     }
   }
 
-  return useFormModalProps(result)
-}
+  props.modify = useFormModalProps(result)
+})

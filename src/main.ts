@@ -1,2 +1,2 @@
-export * from './components/AnForm'
-export * from './components/AnTable'
+export * from './AnForm'
+export * from './AnTable'
