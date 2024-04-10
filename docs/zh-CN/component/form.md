@@ -4,7 +4,7 @@
 
 ## 基础表单
 
-通过 `useForm` 构建一个表单组件，其结果返回一个对象，该对象可以作为组件使用。默认情况下，表单的 model 通过 items 中的 field 字段收集，
+通过 `useForm` 构建一个表单组件，其结果返回一个对象，该对象可以作为组件使用。默认情况下，表单的 model 通过 items 中的 field 字段收集。
 
 :::demo form/basis
 :::
@@ -65,7 +65,7 @@ item 中的 field 属性支持特殊语法，以应对日期控件多个值等�
 :::demo form/ref
 :::
 
-### useForm 类型
+## useForm
 
 ```ts
 useTable(options: UseFormOptions | ((formRef: AnFormInstance) => UseFormOptions)): FormReturn
@@ -81,7 +81,7 @@ interface FormReturn {
 }
 ```
 
-### UseFormOptions 属性
+## UseFormOptions
 
 | 名称        | 类型                  | 说明                                                                            | 默认值 | 始于 |
 | ----------- | --------------------- | ------------------------------------------------------------------------------- | ------ | ---- |
@@ -90,7 +90,7 @@ interface FormReturn {
 | `formProps` | `ArcoFormProps`       | 传递给表单的参数，请查阅 [组件文档](https://arco.design/vue/component/form#API) | `{}`   | -    |
 | `model`     | `Record<string, any>` | 默认从 items 收集                                                               |        | -    |
 
-### UseFormItem 类型
+## UseFormItem
 
 | 名称          | 类型                                     | 说明                                                                                  | 默认值    | 始于 |
 | ------------- | ---------------------------------------- | ------------------------------------------------------------------------------------- | --------- | ---- |
@@ -108,7 +108,7 @@ interface FormReturn {
 | `visiable`    | `(params: AnFormItemFnProps) => boolean` | 是否显示                                                                              |           | -    |
 | `disable`     | `(params: AnFormItemFnProps) => boolean` | 是否禁用                                                                              |           | -    |
 
-### SetterType 类型
+## SetterType
 
 | 类型         | 说明                                                                                                            | 默认值 | 始于 |
 | ------------ | --------------------------------------------------------------------------------------------------------------- | ------ | ---- |
@@ -123,7 +123,7 @@ interface FormReturn {
 | `date`       | 日期选择框，参数和插槽类型，请查阅 [组件文档](https://arco.design/vue/component/date)                           |        | -    |
 | `dateRnage`  | 日期范围选择框，参数和插槽类型，请查阅 [组件文档](https://arco.design/vue/component/date-range)                 |        | -    |
 
-### ArcoItemSlots 类型
+## ArcoItemSlots
 
 | 名称      | 类型                                       | 说明     | 默认值 | 始于 |
 | --------- | ------------------------------------------ | -------- | ------ | ---- |
@@ -132,7 +132,7 @@ interface FormReturn {
 | `extra`   | `(params: AnFormItemFnProps) => Component` | 额外内容 |        | -    |
 | `label`   | `(params: AnFormItemFnProps) => Component` | 标签     |        | -    |
 
-### AnFormItemFnProps 类型
+## AnFormItemFnProps
 
 | 名称    | 类型                  | 说明       | 默认值 | 始于 |
 | ------- | --------------------- | ---------- | ------ | ---- |
@@ -140,7 +140,7 @@ interface FormReturn {
 | `items` | `UseFormItem[]`       | 表单项列表 |        | -    |
 | `model` | `Record<string, any>` | 表单数据   |        | -    |
 
-### Rule 类型
+## Rule
 
 ```ts
 type Rule = FieldStringRule | AnFormItemRule

@@ -1,5 +1,5 @@
 <template>
-  <div style="max-width: 432px;">
+  <div style="max-width: 432px">
     <div>
       <p>布尔值</p>
       <BoolForm></BoolForm>
@@ -21,9 +21,13 @@
 
 <script lang="tsx" setup>
 import { useFormModal } from 'arconify';
+<<<<<<< HEAD:docs/demos/form-modal/trigger/demo.zh-CN.vue
 import { ref } from 'vue';
 
 const show = ref(true);
+=======
+import { Button } from 'vexip-ui';
+>>>>>>> 4d26992bd119ec03106c7faf530315fe02c28d2f:docs/demos/modal/trigger/demo.zh-CN.vue
 
 const BoolForm = useFormModal({
   trigger: true,
@@ -31,10 +35,10 @@ const BoolForm = useFormModal({
     {
       label: '名字',
       field: 'name',
-      setter: 'input'
+      setter: 'input',
     },
   ],
-  submit(model) {}
+  submit(model) {},
 })
 
 const StringForm = useFormModal({
@@ -43,10 +47,10 @@ const StringForm = useFormModal({
     {
       label: '名字',
       field: 'name',
-      setter: 'input'
+      setter: 'input',
     },
   ],
-  submit(model) {}
+  submit(model) {},
 })
 
 // 定义Button的属性
@@ -55,17 +59,17 @@ const ObjectForm = useFormModal({
     text: '我是对象形式',
     visible: () => show.value,
     buttonProps: {
-      status: 'danger'
-    }
+      status: 'danger',
+    },
   },
   items: [
     {
       label: '名字',
       field: 'name',
-      setter: 'input'
+      setter: 'input',
     },
   ],
-  submit(model) {}
+  submit(model) {},
 })
 
 // 自定义渲染函数
@@ -77,9 +81,9 @@ const FunctionForm = useFormModal({
     {
       label: '名字',
       field: 'name',
-      setter: 'input'
+      setter: 'input',
     },
   ],
-  submit(model) {}
+  submit(model) {},
 })
 </script>
